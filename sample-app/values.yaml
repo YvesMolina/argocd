@@ -1,0 +1,42 @@
+traefik:
+  image: "traefik:v2.4"
+  entryPoints:
+    web:
+      address: ":80"
+    metrics:
+      address: ":8082"
+  providers:
+    docker:
+      enabled: true
+      exposedByDefault: false
+
+app:
+  image:
+    repository: yvesmolina/sample-app
+    tag: latest
+  envSecretName: myapp-env  # Name of the Kubernetes Secret containing .env variables
+  ports:
+    http: 8081
+  environment:
+    APP_DEBUG: "true"
+    APP_ENV: "dev"
+    APP_KEY: "base64:DJYTvaRkEZ/YcQsX3TMpB0iCjgme2rhlIOus9A1hnj4="
+    DB_CONNECTION: mysql
+    DB_HOST: db
+    DB_PORT: 3306
+    DB_DATABASE: app_database
+    DB_USERNAME: app_user
+    DB_PASSWORD: app_password
+
+db:
+  image: mysql:5.7
+  restartPolicy: Always
+  environment:
+    MYSQL_DATABASE: app_database
+    MYSQL_USER: app_user
+    MYSQL_PASSWORD: app_password
+    MYSQL_ROOT_PASSWORD: app_root_password
+
+ingress:
+  enabled: true
+  host: localhost

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: "{{ .Values.db.image }}"
+          env:
+            - name: MYSQL_DATABASE
+              value: "{{ .Values.db.environment.MYSQL_DATABASE }}"
+            - name: MYSQL_USER
+              value: "{{ .Values.db.environment.MYSQL_USER }}"
+            - name: MYSQL_PASSWORD
+              value: "{{ .Values.db.environment.MYSQL_PASSWORD }}"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "{{ .Values.db.environment.MYSQL_ROOT_PASSWORD }}"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db-data
+          emptyDir: {}
