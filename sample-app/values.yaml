@@ -14,12 +14,12 @@ app:
     APP_DEBUG: "true"
     APP_ENV: "dev"
     APP_KEY: "base64:DJYTvaRkEZ/YcQsX3TMpB0iCjgme2rhlIOus9A1hnj4="
-    DB_CONNECTION: mysql
-    DB_HOST: db
+    DB_CONNECTION: "mysql"
+    DB_HOST: "db"
     DB_PORT: "3306"
-    DB_DATABASE: app_database
-    DB_USERNAME: app_user
-    DB_PASSWORD: app_password
+    DB_DATABASE: "app_database"
+    DB_USERNAME: "app_user"
+    DB_PASSWORD: "app_password"
 
 db:
   image: "mysql:5.7"
@@ -29,5 +29,5 @@ db:
     MYSQL_PASSWORD: app_password
     MYSQL_ROOT_PASSWORD: app_root_password
   persistence:
-    enabled: true
+    enabled: "true"
     size: 1Gi
