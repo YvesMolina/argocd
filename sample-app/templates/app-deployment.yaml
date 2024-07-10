@@ -1,47 +1,40 @@
+# templates/app-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "myapp.fullname" . }}
-  labels:
-    app: {{ include "myapp.name" . }}
+  name: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "myapp.name" . }}
+      app: app
   template:
     metadata:
       labels:
-        app: {{ include "myapp.name" . }}
+        app: app
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        - name: app
+          image: {{ .Values.app.image }}
           ports:
             - containerPort: {{ .Values.app.ports.http }}
-          envFrom:
-            - secretRef:
-                name: {{ .Values.app.envSecretName }}  # Reference to the Kubernetes Secret
           env:
             - name: APP_DEBUG
-              value: "{{ .Values.app.environment.APP_DEBUG }}"
+              value: {{ .Values.app.env.APP_DEBUG }}
             - name: APP_ENV
-              value: "{{ .Values.app.environment.APP_ENV }}"
+              value: {{ .Values.app.env.APP_ENV }}
             - name: APP_KEY
-              value: "{{ .Values.app.environment.APP_KEY }}"
+              value: {{ .Values.app.env.APP_KEY }}
             - name: DB_CONNECTION
-              value: "{{ .Values.app.environment.DB_CONNECTION }}"
+              value: {{ .Values.app.env.DB_CONNECTION }}
             - name: DB_HOST
-              value: "{{ .Values.app.environment.DB_HOST }}"
+              value: {{ .Values.app.env.DB_HOST }}
             - name: DB_PORT
-              value: "{{ .Values.app.environment.DB_PORT }}"
+              value: {{ .Values.app.env.DB_PORT }}
             - name: DB_DATABASE
-              value: "{{ .Values.app.environment.DB_DATABASE }}"
+              value: {{ .Values.app.env.DB_DATABASE }}
             - name: DB_USERNAME
-              value: "{{ .Values.app.environment.DB_USERNAME }}"
+              value: {{ .Values.app.env.DB_USERNAME }}
             - name: DB_PASSWORD
-              value: "{{ .Values.app.environment.DB_PASSWORD }}"
-      imagePullSecrets:
-        - name: regcred  # if you have a private Docker registry
-      serviceAccountName: default  # or specify a service account
-      restartPolicy: Always
+              value: {{ .Values.app.env.DB_PASSWORD }}

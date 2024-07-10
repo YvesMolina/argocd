@@ -1,0 +1,17 @@
+# templates/traefik-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+    - port: 8082
+      targetPort: metrics
+      name: metrics
+  selector:
+    app: traefik

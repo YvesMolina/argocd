@@ -1,0 +1,12 @@
+# templates/app-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  ports:
+    - port: 8081
+      targetPort: 80
+  selector:
+    app: app
