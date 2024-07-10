@@ -10,3 +10,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.db.persistence.size }}
+  volumeMode: {{ .Values.db.volumeMode }}
+  storageClassName: {{ .Values.db.storageClassName }}
