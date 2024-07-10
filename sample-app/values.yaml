@@ -11,8 +11,8 @@ app:
   ports:
     http: 8081
   env:
-    APP_DEBUG: true
-    APP_ENV: dev
+    APP_DEBUG: "true"
+    APP_ENV: "dev"
     APP_KEY: "base64:DJYTvaRkEZ/YcQsX3TMpB0iCjgme2rhlIOus9A1hnj4="
     DB_CONNECTION: mysql
     DB_HOST: db
