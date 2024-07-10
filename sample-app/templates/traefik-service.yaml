@@ -8,10 +8,10 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: http
+      targetPort: {{ .Values.traefik.ports.http }}
       name: http
     - port: 8082
-      targetPort: metrics
+      targetPort: {{ .Values.traefik.ports.metrics }}
       name: metrics
   selector:
     app: traefik

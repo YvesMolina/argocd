@@ -25,6 +25,6 @@ spec:
             - "--metrics.prometheus.entryPoint=metrics"
           ports:
             - name: http
-              containerPort: {{ .Values.traefik.port.http }}
+              containerPort: {{ .Values.traefik.ports.http }}
             - name: metrics
-              containerPort: {{ .Values.traefik.port.metrics }}
+              containerPort: {{ .Values.traefik.ports.metrics }}
