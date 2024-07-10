@@ -21,20 +21,20 @@ spec:
             - containerPort: {{ .Values.app.ports.http }}
           env:
             - name: APP_DEBUG
-              value: {{ .Values.app.env.APP_DEBUG }}
+              value: "{{ .Values.app.env.APP_DEBUG }}"
             - name: APP_ENV
-              value: {{ .Values.app.env.APP_ENV }}
+              value: "{{ .Values.app.env.APP_ENV }}"
             - name: APP_KEY
-              value: {{ .Values.app.env.APP_KEY }}
+              value: "{{ .Values.app.env.APP_KEY }}"
             - name: DB_CONNECTION
-              value: {{ .Values.app.env.DB_CONNECTION }}
+              value: "{{ .Values.app.env.DB_CONNECTION }}"
             - name: DB_HOST
-              value: {{ .Values.app.env.DB_HOST }}
+              value: "{{ .Values.app.env.DB_HOST }}"
             - name: DB_PORT
-              value: {{ .Values.app.env.DB_PORT }}
+              value: "{{ .Values.app.env.DB_PORT }}"
             - name: DB_DATABASE
-              value: {{ .Values.app.env.DB_DATABASE }}
+              value: "{{ .Values.app.env.DB_DATABASE }}"
             - name: DB_USERNAME
-              value: {{ .Values.app.env.DB_USERNAME }}
+              value: "{{ .Values.app.env.DB_USERNAME }}"
             - name: DB_PASSWORD
-              value: {{ .Values.app.env.DB_PASSWORD }}
+              value: "{{ .Values.app.env.DB_PASSWORD }}"
