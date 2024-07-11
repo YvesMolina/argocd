@@ -1,5 +1,3 @@
-# templates/app-deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,5 +40,12 @@ spec:
             postStart:
               exec:
                 command: ["/bin/sh", "-c", "php artisan migrate && php artisan db:seed"]
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
       imagePullSecrets:
         - name: {{ .Values.app.imagePullSecrets }}
