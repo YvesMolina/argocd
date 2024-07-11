@@ -17,8 +17,6 @@ spec:
       containers:
         - name: app
           image: {{ .Values.app.image }}
-        - imagePullSecrets:
-            - name: {{ .Values.app.imagePullSecrets }}
           ports:
             - containerPort: {{ .Values.app.ports.http }}
           env:
@@ -44,3 +42,5 @@ spec:
             postStart:
               exec:
                 command: ["/bin/sh", "-c", "php artisan migrate && php artisan db:seed"]
+      imagePullSecrets:
+        - name: {{ .Values.app.imagePullSecrets }}
