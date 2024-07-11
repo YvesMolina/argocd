@@ -5,7 +5,10 @@ traefik:
     metrics: 8082
 
 app:
-  image: "yvesmolina/sample-app"
+  image:
+    repository: "yvesmolina/sample-app"
+    tag: "1.0.2"
+    pullPolicy: "IfNotPresent"
   ports:
     http: 8081
   env:
