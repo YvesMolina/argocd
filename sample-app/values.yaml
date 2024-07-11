@@ -1,9 +1,3 @@
-traefik:
-  image: "traefik:v2.4"
-  ports:
-    http: 80
-    metrics: 8082
-
 app:
   image: "yvesmolina/sample-app"
   ports:
@@ -18,6 +12,13 @@ app:
     DB_DATABASE: "app_database"
     DB_USERNAME: "app_user"
     DB_PASSWORD: "app_password"
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "250m"
+    limits:
+      memory: "256Mi"
+      cpu: "500m"
 
 db:
   image: "mysql:5.7"
@@ -29,3 +30,10 @@ db:
   persistence:
     enabled: "true"
     size: "1Gi"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"

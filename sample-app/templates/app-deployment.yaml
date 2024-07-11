@@ -1,5 +1,3 @@
-# templates/app-deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -38,6 +36,25 @@ spec:
               value: "{{ .Values.app.env.DB_USERNAME }}"
             - name: DB_PASSWORD
               value: "{{ .Values.app.env.DB_PASSWORD }}"
+          resources:
+            requests:
+              memory: {{ .Values.app.resources.requests.memory }}
+              cpu: {{ .Values.app.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.app.resources.limits.memory }}
+              cpu: {{ .Values.app.resources.limits.cpu }}
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: {{ .Values.app.ports.http }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: {{ .Values.app.ports.http }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
           lifecycle:
             postStart:
               exec:
