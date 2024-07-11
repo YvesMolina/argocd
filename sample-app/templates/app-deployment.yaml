@@ -17,6 +17,8 @@ spec:
       containers:
         - name: app
           image: {{ .Values.app.image }}
+        - imagePullSecrets:
+            - name: {{ .Values.app.imagePullSecrets.name }}
           ports:
             - containerPort: {{ .Values.app.ports.http }}
           env:
