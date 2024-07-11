@@ -29,5 +29,3 @@ db:
   persistence:
     enabled: "true"
     size: "1Gi"
-  volumeMode: "Filesystem"
-  storageClassName: "nfs-client"
