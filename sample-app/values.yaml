@@ -1,7 +1,6 @@
 app:
   image: "yvesmolina/sample-app"
-  imagePullSecrets:
-    - name: dockerhub-credentials
+  imagePullSecrets: dockerhub-credentials
   ports:
     http: 8081
   env:
