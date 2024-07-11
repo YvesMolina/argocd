@@ -5,6 +5,7 @@ kind: Service
 metadata:
   name: app
 spec:
+  type: NodePort
   ports:
     - port: 8081
       targetPort: 80
