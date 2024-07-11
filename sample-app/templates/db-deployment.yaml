@@ -1,3 +1,5 @@
+# templates/db-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,23 +29,6 @@ spec:
           volumeMounts:
             - name: db-data
               mountPath: /var/lib/mysql
-          resources:
-            requests:
-              memory: {{ .Values.db.resources.requests.memory }}
-              cpu: {{ .Values.db.resources.requests.cpu }}
-            limits:
-              memory: {{ .Values.db.resources.limits.memory }}
-              cpu: {{ .Values.db.resources.limits.cpu }}
-          readinessProbe:
-            exec:
-              command: ["mysqladmin", "ping"]
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            exec:
-              command: ["mysqladmin", "ping"]
-            initialDelaySeconds: 15
-            periodSeconds: 20
       volumes:
         - name: db-data
           persistentVolumeClaim:
