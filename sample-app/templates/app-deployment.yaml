@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+          image: "yvesmolina/sample-app:1.0.2"
           ports:
             - containerPort: {{ .Values.app.ports.http }}
           env:
