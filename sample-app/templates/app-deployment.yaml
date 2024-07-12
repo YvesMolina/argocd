@@ -42,22 +42,22 @@ spec:
                 command: ["/bin/sh", "-c", "php artisan migrate && php artisan db:seed"]
           resources:
             requests:
-              memory: {{ .Values.app.resources.requests.memory }}
-              cpu: {{ .Values.app.resources.requests.cpu }}
+              memory: "{{ .Values.app.resources.requests.memory }}"
+              cpu: "{{ .Values.app.resources.requests.cpu }}"
             limits:
-              memory: {{ .Values.app.resources.limits.memory }}
-              cpu: {{ .Values.app.resources.limits.cpu }}
+              memory: "{{ .Values.app.resources.limits.memory }}"
+              cpu: "{{ .Values.app.resources.limits.cpu }}"
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.app.ports.http }}
+              port: "{{ .Values.app.ports.http }}"
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.app.ports.http }}
+              port: "{{ .Values.app.ports.http }}"
             initialDelaySeconds: 15
             periodSeconds: 5
       imagePullSecrets:
-        - name: {{ .Values.app.imagePullSecrets }}
+        - name: "{{ .Values.app.imagePullSecrets }}"
