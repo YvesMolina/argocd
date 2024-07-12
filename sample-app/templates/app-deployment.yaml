@@ -50,17 +50,5 @@ spec:
             limits:
               memory: "{{ .Values.app.resources.limits.memory }}"
               cpu: "{{ .Values.app.resources.limits.cpu }}"
-          livenessProbe:
-            httpGet:
-              path: /
-              port: {{ .Values.app.ports.http }}
-            initialDelaySeconds: 120
-            periodSeconds: 50
-          readinessProbe:
-            httpGet:
-              path: /
-              port: {{ .Values.app.ports.http }}
-            initialDelaySeconds: 120
-            periodSeconds: 50
       imagePullSecrets:
         - name: {{ .Values.app.imagePullSecrets }}
