@@ -6,21 +6,47 @@ app:
   env:
     APP_DEBUG: "true"
     APP_ENV: "dev"
-    APP_KEY: "base64:DJYTvaRkEZ/YcQsX3TMpB0iCjgme2rhlIOus9A1hnj4="
+    APP_KEY:
+      secretKeyRef:
+        name: app-secrets
+        key: APP_KEY
     DB_CONNECTION: mysql
     DB_HOST: db
     DB_PORT: "3306"
     DB_DATABASE: app_database
     DB_USERNAME: app_user
-    DB_PASSWORD: app_password
+    DB_PASSWORD:
+      secretKeyRef:
+        name: app-secrets
+        key: DB_PASSWORD
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
 
 db:
   image: "mysql:5.7"
   env:
     MYSQL_DATABASE: app_database
     MYSQL_USER: app_user
-    MYSQL_PASSWORD: app_password
-    MYSQL_ROOT_PASSWORD: app_root_password
+    MYSQL_PASSWORD:
+      secretKeyRef:
+        name: app-secrets
+        key: MYSQL_PASSWORD
+    MYSQL_ROOT_PASSWORD:
+      secretKeyRef:
+        name: app-secrets
+        key: MYSQL_ROOT_PASSWORD
   persistence:
     enabled: "true"
     size: "1Gi"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"

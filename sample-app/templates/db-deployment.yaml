@@ -29,11 +29,27 @@ spec:
               mountPath: /var/lib/mysql
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "250m"
+              memory: {{ .Values.db.resources.requests.memory }}
+              cpu: {{ .Values.db.resources.requests.cpu }}
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: {{ .Values.db.resources.limits.memory }}
+              cpu: {{ .Values.db.resources.limits.cpu }}
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD}"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD}"
+            initialDelaySeconds: 15
+            periodSeconds: 5
       volumes:
         - name: db-data
           persistentVolumeClaim:
