@@ -52,13 +52,13 @@ spec:
               cpu: "{{ .Values.app.resources.limits.cpu }}"
           livenessProbe:
             httpGet:
-              path: /health
+              path: /
               port: {{ .Values.app.ports.http }}
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /health
+              path: /
               port: {{ .Values.app.ports.http }}
             initialDelaySeconds: 15
             periodSeconds: 5
