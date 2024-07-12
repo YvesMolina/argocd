@@ -4,7 +4,7 @@ app:
   ports:
     http: 8081
   env:
-    APP_DEBUG: "true"
+    APP_DEBUG: "false"
     APP_ENV: "dev"
     APP_KEY:
       secretKeyRef:

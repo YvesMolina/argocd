@@ -26,7 +26,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: app-secrets
-                  key: DB_PASSWORD
+                  key: APP_KEY
             - name: DB_CONNECTION
               value: "{{ .Values.app.env.DB_CONNECTION }}"
             - name: DB_HOST
