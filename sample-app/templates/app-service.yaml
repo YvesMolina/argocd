@@ -1,12 +1,12 @@
-# templates/app-service.yaml
-
 apiVersion: v1
 kind: Service
 metadata:
   name: app
 spec:
+  type: NodePort
   ports:
     - port: 8081
       targetPort: 80
+      nodePort: 30001 
   selector:
     app: app
