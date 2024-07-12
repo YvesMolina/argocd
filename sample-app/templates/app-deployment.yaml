@@ -23,7 +23,10 @@ spec:
             - name: APP_ENV
               value: "{{ .Values.app.env.APP_ENV }}"
             - name: APP_KEY
-              value: "{{ .Values.app.env.APP_KEY }}"
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PASSWORD
             - name: DB_CONNECTION
               value: "{{ .Values.app.env.DB_CONNECTION }}"
             - name: DB_HOST
