@@ -12,7 +12,6 @@ spec:
       labels:
         app: app
     spec:
-      replicas: 3
       containers:
         - name: app
           image: {{ .Values.app.image }}
