@@ -35,7 +35,10 @@ spec:
             - name: DB_USERNAME
               value: "{{ .Values.app.env.DB_USERNAME }}"
             - name: DB_PASSWORD
-              value: "{{ .Values.app.env.DB_PASSWORD }}"
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PASSWORD
           lifecycle:
             postStart:
               exec:
